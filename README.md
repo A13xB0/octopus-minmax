@@ -1,6 +1,6 @@
 # Octopus Minmax Bot 🐙🤖
 
-This is a fork of https://github.com/eelmafia/octopus-minmax but with shelly integration so people unlucky enough not to have an octopus mini can still benefit from this fantastic addon.
+This is a fork of https://github.com/eelmafia/octopus-minmax but with home assistant consumption entity integration so people unlucky enough not to have an octopus mini can still benefit from this fantastic addon.
 
 ## Description
 This bot will use your electricity usage and compare your current Smart tariff costs for the day with another smart tariff and initiate a switch if it's cheaper. See below for supported tariffs.
