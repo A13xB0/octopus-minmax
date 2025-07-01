@@ -23,3 +23,10 @@ ONE_OFF_RUN = os.getenv("ONE_OFF", "false") in ["true", "True", "1"]
 
 # Whether to notify the user of a switch but not actually switch
 DRY_RUN = os.getenv("DRY_RUN", "false") in ["true", "True", "1"]
+
+# Home Assistant Integration (if provided, uses HA instead of Octopus Mini)
+HA_URL = os.getenv("HA_URL", "")
+HA_TOKEN = os.getenv("HA_TOKEN", "")
+HA_ENERGY_ENTITY = os.getenv("HA_ENERGY_ENTITY", "")
+HA_RATE_ENTITY = os.getenv("HA_RATE_ENTITY", "")
+HA_STANDING_CHARGE_ENTITY = os.getenv("HA_STANDING_CHARGE_ENTITY", "")

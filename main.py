@@ -8,6 +8,7 @@ from notification import send_notification, send_batch_notification
 from queries import *
 from tariff import TARIFFS
 from query_service import QueryService
+from data_sources.data_source_factory import DataSourceFactory
 
 query_service: QueryService
 tariffs = []
@@ -34,6 +35,7 @@ def accept_new_agreement(product_code, enrolment_id):
 
 
 def get_acc_info() -> AccountInfo:
+    # Get basic account information from Octopus API (needed for tariff info and MPAN)
     query = account_query.format(acc_number=config.ACC_NUMBER)
     result = query_service.execute_gql_query(query)
     import_agreement = None
@@ -63,6 +65,7 @@ def get_acc_info() -> AccountInfo:
     if not mpan:
         raise Exception("ERROR: No MPAN found for the IMPORT meter")
 
+    # Get device ID for Octopus data source (may not be needed for HA)
     device_id = None
     meter_point = import_agreement.get("meterPoint", {})
     for meter in meter_point.get("meters", []):
@@ -73,20 +76,27 @@ def get_acc_info() -> AccountInfo:
         if device_id:
             break
     
-    if not device_id:
-        raise Exception("ERROR: No device ID found for the IMPORT meter")
-    
     matching_tariff = next((tariff for tariff in tariffs if tariff.is_tariff(tariff_code)), None)
     if matching_tariff is None:
         raise Exception(f"ERROR: Found no supported tariff for {tariff_code}")
 
+    # Create appropriate data source and get consumption data
+    # Note: device_id may be None if using Home Assistant data source
+    data_source = DataSourceFactory.create_data_source(
+        query_service=query_service,
+        device_id=device_id,
+        current_standing_charge=curr_stdn_charge
+    )
+    
     # Get consumption for today
-    query = consumption_query.format(device_id=device_id, start_date=f"{date.today()}T00:00:00Z",
-                                     end_date=f"{date.today()}T23:59:59Z")
-    result = query_service.execute_gql_query(query)
-    consumption = result['smartMeterTelemetry']
+    start_date = f"{date.today()}T00:00:00Z"
+    end_date = f"{date.today()}T23:59:59Z"
+    consumption = data_source.get_consumption_data(start_date, end_date)
+    
+    # Get standing charge from data source (may be different for HA)
+    standing_charge = data_source.get_standing_charge()
 
-    return AccountInfo(matching_tariff, curr_stdn_charge, region_code, consumption, mpan)
+    return AccountInfo(matching_tariff, standing_charge, region_code, consumption, mpan)
 
 
 def get_potential_tariff_rates(tariff, region_code):

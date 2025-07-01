@@ -14,3 +14,9 @@ services:
       - ONE_OFF=false
       - DRY_RUN=false
       - TARIFFS=go,agile,flexible
+      # Home Assistant Integration (optional - if provided, uses HA instead of Octopus Mini)
+      - HA_URL=<your_home_assistant_url>
+      - HA_TOKEN=<your_ha_long_lived_token>
+      - HA_ENERGY_ENTITY=<your_shelly_energy_entity>
+      - HA_RATE_ENTITY=<your_octopus_rate_entity>
+      - HA_STANDING_CHARGE_ENTITY=<your_octopus_standing_charge_entity>

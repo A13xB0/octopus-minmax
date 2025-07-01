@@ -23,6 +23,11 @@ options:
   TARIFFS: "agile,go,flexible"
   TZ: "Europe/London"
   BATCH_NOTIFICATIONS: false
+  HA_URL: ""
+  HA_TOKEN: ""
+  HA_ENERGY_ENTITY: ""
+  HA_RATE_ENTITY: ""
+  HA_STANDING_CHARGE_ENTITY: ""
 schema:
   API_KEY: str
   ACC_NUMBER: str
@@ -33,3 +38,8 @@ schema:
   TARIFFS: str
   TZ: str
   BATCH_NOTIFICATIONS: bool
+  HA_URL: str
+  HA_TOKEN: str
+  HA_ENERGY_ENTITY: str
+  HA_RATE_ENTITY: str
+  HA_STANDING_CHARGE_ENTITY: str
