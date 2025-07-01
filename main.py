@@ -341,6 +341,16 @@ def run_tariff_compare():
         global query_service
         query_service = QueryService(config.API_KEY, config.BASE_URL)
         load_tariffs_from_ids(config.TARIFFS)
+        
+        # Log which data source will be used for consumption data
+        data_source_info = DataSourceFactory.get_data_source_info()
+        if data_source_info["selected_source"] == "home_assistant":
+            send_notification("Starting up - will use Home Assistant for consumption data")
+        elif data_source_info["selected_source"] == "octopus":
+            send_notification("Starting up - will use Octopus Energy API for consumption data")
+        else:
+            send_notification("Starting up - no valid data source configured")
+        
         if query_service is not None:
             compare_and_switch()
         else:

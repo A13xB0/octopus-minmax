@@ -3,6 +3,7 @@ import config
 from .base_data_source import BaseDataSource
 from .octopus_data_source import OctopusDataSource
 from .home_assistant_data_source import HomeAssistantDataSource
+from notification import send_notification
 
 
 class DataSourceFactory:
