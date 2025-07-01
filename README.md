@@ -142,8 +142,8 @@ The bot now supports using Home Assistant as an alternative to the Octopus Home 
 
 2. **Find Your Entity IDs:**
    - **Energy Entity:** Your Shelly energy sensor (e.g., `sensor.shelly_energy_today`)
-   - **Rate Entity:** From Octopus integration (e.g., `sensor.octopus_energy_electricity_z14qu60479_1800024395880_current_rate`)
-   - **Standing Charge Entity:** From Octopus integration (e.g., `sensor.octopus_energy_electricity_z14qu60479_1800024395880_standing_charge`)
+   - **Rate Entity:** From Octopus integration (e.g., `sensor.octopus_energy_electricity_z000_180000_current_rate`)
+   - **Standing Charge Entity:** From Octopus integration (e.g., `sensor.octopus_energy_electricity_z00000_00000_standing_charge`)
 
 3. **Create a Long-Lived Access Token:**
    - Go to Home Assistant > Profile > Long-Lived Access Tokens
