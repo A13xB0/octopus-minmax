@@ -160,8 +160,6 @@ When Home Assistant entities are configured:
 - Calculates costs using: `consumption_kwh × rate_£_per_kwh × 1.05 (VAT) × 100 (pence)`
 - Uses the standing charge from the Octopus Energy integration
 
-This provides more accurate consumption data than the Octopus Mini estimates, while still using official Octopus rates for cost calculations.
-
 ### Fallback Behavior
 
 If Home Assistant is unavailable or misconfigured, the bot automatically falls back to using the Octopus Mini data source, ensuring reliability.
