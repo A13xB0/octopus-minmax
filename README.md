@@ -1,7 +1,5 @@
 # Octopus Minmax Bot 🐙🤖
 
-This is a fork of https://github.com/eelmafia/octopus-minmax but with home assistant consumption entity integration so people unlucky enough not to have an octopus mini can still benefit from this fantastic addon.
-
 ## Description
 This bot will use your electricity usage and compare your current Smart tariff costs for the day with another smart tariff and initiate a switch if it's cheaper. See below for supported tariffs.
 
@@ -165,20 +163,3 @@ When Home Assistant entities are configured:
 ### Fallback Behavior
 
 If Home Assistant is unavailable or misconfigured, the bot automatically falls back to using the Octopus Mini data source, ensuring reliability.
-
-### Testing Your Setup
-
-A test script is provided to verify your Home Assistant integration:
-
-```bash
-python test_ha_integration.py
-```
-
-This script will:
-- Check your configuration
-- Test connectivity to Home Assistant
-- Verify entity availability
-- Show sample consumption and cost data
-- Confirm the data source factory is working correctly
-
-Run this before deploying to ensure everything is configured properly.

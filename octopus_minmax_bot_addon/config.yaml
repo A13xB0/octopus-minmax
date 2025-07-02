@@ -1,8 +1,8 @@
 ---
 name: Octopus MinMax Bot
-image: hectospark/octopus-minmax-bot
-url: https://github.com/A13xB0/octopus-minmax
-version: v0.8.2
+image: eelmafia/octopus-minmax-bot
+url: https://github.com/eelmafia/octopus-minmax
+version: v0.8.1
 slug: octopus_minmax_bot
 startup: application
 init: false
